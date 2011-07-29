@@ -1,5 +1,5 @@
-Module  : Go To Topic
-Version : 1.2.2
+Module  : Go To Topic 
+Version : 1.0.2
 Authors : Brian Moon <brian@phorum.org>
           Maurice Makaay <maurice@phorum.org>
 
@@ -24,25 +24,10 @@ Installation instructions:
 
     - Enable the module "Go To Topic".
 
-    - Edit the settings for the "Go To Topic" module. There is only one
-      setting: "Automatically replace list URLs". If you enable this feature,
-      then you are done. All the list URLs on the read page will be
-      automatically replaced with the Go To Topic URL. If you disable this
-      feature and want to add the Go To Topic URLs manually to your
-      templates, then continue with section 2.
+2) Edit your templates
 
-
-2) Edit your templates (only if "Automatically replace list URLs" is disabled)
-
-    By default, the module is configured to replace the list URLs
-    with the Go To Topic URL when coming from a read page. If you
-    disable this feature in the settings for the module, then you can
-    fully control where to use the Go To Topic URL. You will have to update
-    your templates for this.
-
-    - Edit your read.tpl, ready_hybrid.tpl and read_threads.tpl to include a
-      "go to topic" link. This can be done by adding a link to the navigation
-      which looks like:
+    - Edit your read.tpl and read_threads.tpl to include a "go to topic" link.
+      This can be done by adding a link to the navigation which looks like:
 
         <a href="{GO_TO_TOPIC_URL}">{GO_TO_TOPIC}</a>
 
@@ -52,24 +37,24 @@ Installation instructions:
       {GO_TO_TOPIC} with whatever text/html you like.
 
       You can also modify the existing Message List menu item in the read
-      templates instead, to have them point to the topic's list page.
+      templates instead, to have them point to the topic's list page. 
       If you want to do that, then find:
 
-        href="{URL->LIST}"
+        href="{URL->TOP}"
 
       Replace that code with
 
         href="{GO_TO_TOPIC_URL}"
 
-    - If you want your browser to jump down the page to the thread from
-      which you are returning on the message list page, then edit
-      list.tpl and list_threads.tpl and find:
+    - If you want your browser to jump to the thread from which you are
+      returning on the list page, then edit list.tpl and list_threads.tpl
+      and find:
 
-        <a href="{MESSAGES->URL->READ}"
+        <a href="{ROWS->url}">{ROWS->subject}</a>
 
       Replace that code with:
 
-        <a name="msg-{MESSAGES->message_id}" href="{MESSAGES->URL->READ}"
+        <a name="msg-{ROWS->message_id}" href="{ROWS->url}">{ROWS->subject}</a>
 
       Without this code change, Phorum will jump to the correct list page,
       but the page will not scroll down to the message that you are returning

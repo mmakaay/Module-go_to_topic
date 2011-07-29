@@ -1,58 +1,6 @@
 Changelog:
 ----------
 
-2011-04-01 v1.2.2 by Maurice Makaay
-
-    - Some small changes to the database layer, trying to work around
-      a possible performance issue.
-
-2011-01-21 v1.2.1 by Maurice Makaay
-
-    - Fixed redirection when coming from a sticky thread. Without this
-      fix, the module redirected to the page on which the sticky message 
-      had been when it had been unsticky. Now, when returning from a
-      sticky message, the first page is always loaded.
-
-2010-10-09 v1.2.0 by Maurice Makaay
-
-    - Fixed an edge case situation, where the module would not jump back
-      to the correct list page, when there were a few messages bearing
-      the same timestamp around the page separation.
-
-    - Make use of new hooks in Phorum 5.2.16+ to optimize the module.
-
-    - Added a configurable feature to automatically replace list URLs
-      on the read page with the Go To Topic URL. This takes away the
-      need to modify the templates.
-
-      If you are upgrading from an older version of this module, then
-      beware that this option is enabled by default in the settings.
-      If you are using both {URL->LIST} and {GO_TO_TOPIC_URL} in your
-      templates, then disable the feature.
-
-    - When using the above feature, the breadcrumb that points to the
-      forum will also be modified to use the Go To Topic URL instead
-      of the plain forum URL.
-
-    - Added new German language files. Thanks to Oliver Riesen!
-
-2008-07-30 v1.1.2 by Maurice Makaay
-
-    - A README documentation update to make the template variables
-      that are referenced for modifying the template compatible
-      with those that are used in the Phorum 5.2 templates.
-
-2008-04-21 v1.1.1 by Maurice Makaay
-
-    - Jumping to the posted message in the message list after posting
-      a message is now only enabled if in the "General Settings" admin page
-      the option "After posting goto" is set to "Message List Page".
-
-2007-04-12 v1.1.0 by Maurice Makaay
-
-    - Branched the module for separating 5.1 and 5.2 support (5.2 uses
-      a different database layer API).
-
 2007-04-12 v1.0.2 by Maurice Makaay
 
     - If a forum is read in threaded mode, then the anchor
@@ -77,7 +25,7 @@ Changelog:
       dealnews.com website.
 
     - Fixed an off-by-one bug in determining what page to show. Jumping
-      back to the very first message on a list page let the user jump
+      back to the very first message on a list page let the user jump 
       to the page before the correct page instead.
 
     - Made the module work when jumping back from the read page on a forum

@@ -1,15 +1,9 @@
 title: Go To Topic
 desc: This module implements the Go To Topic concept from Phorum 3. It allows the user to jump back to the exact list page on which a message that was read or written resides. Phorum 5 only implements the Message List link, which will always jump to the first list page.
-version: 1.2.2
-require_version: 5.2.16
-url: http://www.phorum.org/phorum5/read.php?62,123953
+version: 1.0.2
 author: Brian Moon and Maurice Makaay
-category: viewlayout
 
 hook: lang|
-hook: page_list|phorum_mod_go_to_topic_page_list
-hook: start_output|phorum_mod_go_to_topic_start_output
-hook: after_post|phorum_mod_go_to_topic_after_post
-
-priority: run hook after_post after *
+hook: common|phorum_mod_go_to_topic_common
+hook: post_post|phorum_mod_go_to_topic_post_post
 
