@@ -1,0 +1,78 @@
+Module  : Go To Topic
+Version : 1.2.2
+Authors : Brian Moon <brian@phorum.org>
+          Maurice Makaay <maurice@phorum.org>
+
+This module implements the Go To Topic concept from Phorum 3.
+It allows the user to jump back to the exact list page on which a message
+that was read or written resides. Phorum 5 only implements the Message List
+link, which will always jump to the first list page.
+
+
+Installation instructions:
+--------------------------
+
+1) Install the module
+
+    - Unpack the archive;
+
+    - Move the directory "go_to_topic" to the directory "mods"
+      within your Phorum installation;
+
+    - Login as administrator in Phorum's administrative interface and
+      go to the "Modules" section;
+
+    - Enable the module "Go To Topic".
+
+    - Edit the settings for the "Go To Topic" module. There is only one
+      setting: "Automatically replace list URLs". If you enable this feature,
+      then you are done. All the list URLs on the read page will be
+      automatically replaced with the Go To Topic URL. If you disable this
+      feature and want to add the Go To Topic URLs manually to your
+      templates, then continue with section 2.
+
+
+2) Edit your templates (only if "Automatically replace list URLs" is disabled)
+
+    By default, the module is configured to replace the list URLs
+    with the Go To Topic URL when coming from a read page. If you
+    disable this feature in the settings for the module, then you can
+    fully control where to use the Go To Topic URL. You will have to update
+    your templates for this.
+
+    - Edit your read.tpl, ready_hybrid.tpl and read_threads.tpl to include a
+      "go to topic" link. This can be done by adding a link to the navigation
+      which looks like:
+
+        <a href="{GO_TO_TOPIC_URL}">{GO_TO_TOPIC}</a>
+
+      The {GO_TO_TOPIC} template variable contains the language string for
+      "Go To Topic". You can change the language files for this module
+      if you need a different link title or you can simply replace
+      {GO_TO_TOPIC} with whatever text/html you like.
+
+      You can also modify the existing Message List menu item in the read
+      templates instead, to have them point to the topic's list page.
+      If you want to do that, then find:
+
+        href="{URL->LIST}"
+
+      Replace that code with
+
+        href="{GO_TO_TOPIC_URL}"
+
+    - If you want your browser to jump down the page to the thread from
+      which you are returning on the message list page, then edit
+      list.tpl and list_threads.tpl and find:
+
+        <a href="{MESSAGES->URL->READ}"
+
+      Replace that code with:
+
+        <a name="msg-{MESSAGES->message_id}" href="{MESSAGES->URL->READ}"
+
+      Without this code change, Phorum will jump to the correct list page,
+      but the page will not scroll down to the message that you are returning
+      from.
+
+
